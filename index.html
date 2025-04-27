@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distros Linux para Gamers | Linux Gamer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#8A2BE2',
+                        electric: '#00F5FF',
+                        pink: '#FF00FF',
+                        dark: '#0F0F15',
+                    },
+                    fontFamily: {
+                        'sans': ['"Exo 2"', 'sans-serif'],
+                    },
+                    animation: {
+                        'rgb': 'rgb 5s linear infinite',
+                        'typing': 'typing 3s steps(40) infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        rgb: {
+                            '0%': { 'border-color': '#8A2BE2' },
+                            '33%': { 'border-color': '#00F5FF' },
+                            '66%': { 'border-color': '#FF00FF' },
+                            '100%': { 'border-color': '#8A2BE2' },
+                        },
+                        typing: {
+                            '0%': { width: '0' },
+                            '50%': { width: '100%' },
+                            '100%': { width: '0' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;900&display=swap');
+        
+        body {
+            background-color: #0F0F15;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .rgb-border {
+            animation: rgb 5s linear infinite;
+        }
+        
+        .btn-rgb {
+            background: linear-gradient(45deg, #8A2BE2, #00F5FF, #FF00FF);
+            background-size: 200% 200%;
+            animation: rgb 5s linear infinite;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-rgb:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.7);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #2D2D3A, #1A1A24);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+        }
+        
+        .tech-border {
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.1);
+        }
+        
+        .distro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+            border-color: #8A2BE2;
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #8A2BE2;
+            animation: typing 3s steps(40) infinite;
+        }
+        
+        .pulse-icon {
+            animation: pulse-slow 2s infinite;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-text {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Particle background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.3);
+            animation: float 15s infinite linear;
+        }
+        
+        /* Click sound effect */
+        .btn-click {
+            transition: transform 0.1s;
+        }
+        
+        .btn-click:active {
+            transform: scale(0.95);
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: #8A2BE2;
+        }
+        
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Header with Navigation -->
+    <header class="bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-neon/20">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-brands fa-linux text-3xl text-neon"></i>
+                <span class="text-xl font-bold bg-gradient-to-r from-neon to-electric bg-clip-text text-transparent">LINUX GAMER</span>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#vantagens" class="hover:text-neon transition">Vantagens</a>
+                <a href="#distros" class="hover:text-neon transition">Distros</a>
+                <a href="#software" class="hover:text-neon transition">Software</a>
+                <a href="#tutoriais" class="hover:text-neon transition">Tutoriais</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="https://youtube.com/linuxgamer" class="text-neon hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                <a href="#" class="text-neon hover:text-white transition"><i class="fab fa-discord text-xl"></i></a>
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="container mx-auto px-4 py-20 md:py-28 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-block px-4 py-1 mb-4 bg-neon/10 border border-neon/30 rounded-full text-neon text-sm font-semibold">
+                    <span class="typing-effect">DISTROS PRONTAS PARA JOGAR!</span>
+                </div>
+                <h1 class="hero-text text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                    <span class="text-neon">🎮 SEU PC ANTIGO</span><br>
+                    <span class="bg-gradient-to-r from-neon to-pink bg-clip-text text-transparent">RODANDO JOGOS NOVOS!</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                    Todas essas versões são GRÁTIS, fáceis de instalar e já vêm com tudo que você precisa para jogar!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#distros" class="btn-rgb px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click">
+                        <i class="fas fa-download"></i> VER DISTROS RECOMENDADAS
+                    </a>
+                    <a href="https://youtube.com/linuxgamer" class="btn-secondary px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click">
+                        <i class="fab fa-youtube"></i> VER TUTORIAIS NO YOUTUBE
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex justify-center gap-6">
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-steam text-2xl text-gray-300"></i>
+                        <span class="text-gray-300">Steam</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-gamepad text-2xl text-gray-300"></i>
+                        <span class="text-gray-300">Controles</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-linux text-2xl text-gray-300"></i>
+                        <span class="text-gray-300">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="vantagens" class="py-16 bg-gradient-to-b from-dark to-black/80">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-neon">POR QUE USAR</span> LINUX PARA GAMING?
+                </h2>
+                <p class="text-lg text-gray-300">
+                    Veja as vantagens que fazem do Linux a melhor escolha para gamers
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Advantage 1 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <h3 class="text-xl font-bold">PERFORMANCE</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Menos consumo de recursos do sistema significa mais FPS para seus jogos. Linux é mais leve que Windows e roda melhor em hardware antigo.
+                    </p>
+                </div>
+                
+                <!-- Advantage 2 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-lock feature-icon"></i>
+                        <h3 class="text-xl font-bold">SEGURANÇA</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Sem vírus, sem spyware, sem telemetria forçada. Jogue tranquilo sabendo que seu sistema está seguro e seus dados protegidos.
+                    </p>
+                </div>
+                
+                <!-- Advantage 3 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-sync-alt feature-icon"></i>
+                        <h3 class="text-xl font-bold">ATUALIZAÇÕES</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Atualizações rápidas que não reiniciam seu PC no meio do jogo. Controle total sobre quando e como atualizar seu sistema.
+                    </p>
+                </div>
+                
+                <!-- Advantage 4 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-gamepad feature-icon"></i>
+                        <h3 class="text-xl font-bold">COMPATIBILIDADE</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Proton, Wine e Lutris permitem jogar quase qualquer jogo do Windows no Linux. Suporte nativo a controles e periféricos.
+                    </p>
+                </div>
+                
+                <!-- Advantage 5 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-cog feature-icon"></i>
+                        <h3 class="text-xl font-bold">PERSONALIZAÇÃO</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Interface totalmente personalizável. Crie o ambiente perfeito para jogar, desde temas escuros até interfaces estilo Steam Deck.
+                    </p>
+                </div>
+                
+                <!-- Advantage 6 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-dollar-sign feature-icon"></i>
+                        <h3 class="text-xl font-bold">GRATUIDADE</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        100% gratuito, sem custos de licença. Todo o dinheiro que você economiza pode ser investido em jogos ou hardware!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto mt-12 text-center">
+                <a href="https://youtube.com/linuxgamer/playlist/tutoriais" class="btn-rgb px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click mx-auto max-w-md">
+                    <i class="fab fa-youtube"></i> ASSISTA TUTORIAIS COMPLETOS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distros Section -->
+    <section id="distros" class="py-16 bg-gradient-to-b from-black/80 to-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-neon">DISTROS PRONTAS</span> PARA JOGAR
+                </h2>
+                <p class="text-lg text-gray-300">
+                    Escolha a melhor distribuição Linux para o seu setup de gaming
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Garuda Linux -->
+                <div class="distro-card bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border transition duration-300 hover:border-neon">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="bg-gradient-to-br from-purple-600 to-pink-500 p-3 rounded-lg">
+                                <i class="fas fa-dragon text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">GARUDA LINUX</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6 flex-grow">
+                            Para quem quer tudo pronto, até a loja de jogos! Performance otimizada para gaming com kernel especial.
+                        </p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-purple-900/50 text-xs px-2 py-1 rounded">FPS Boost</span>
+                                <span class="bg-purple-900/50 text-xs px-2 py-1 rounded">Loja de Jogos</span>
+                                <span class="bg-purple-900/50 text-xs px-2 py-1 rounded">RGB Control</span>
+                            </div>
+                            <a href="https://youtube.com/linuxgamer/garuda" class="btn-rgb w-full py-2 rounded-lg font-bold flex items-center justify-center gap-2 btn-click">
+                                <i class="fab fa-youtube"></i> TUTORIAL GARUDA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pop OS -->
+                <div class="distro-card bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border transition duration-300 hover:border-neon">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="bg-gradient-to-br from-blue-600 to-cyan-500 p-3 rounded-lg">
+                                <i class="fas fa-rocket text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">POP!_OS</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6 flex-grow">
+                            Parecido com o Windows, mas sem travamentos! Desenvolvido pela System76 com drivers NVIDIA incluídos.
+                        </p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-900/50 text-xs px-2 py-1 rounded">Fácil de Usar</span>
+                                <span class="bg-blue-900/50 text-xs px-2 py-1 rounded">Driver NVIDIA</span>
+                                <span class="bg-blue-900/50 text-xs px-2 py-1 rounded">Estável</span>
+                            </div>
+                            <a href="https://youtube.com/linuxgamer/popos" class="btn-rgb w-full py-2 rounded-lg font-bold flex items-center justify-center gap-2 btn-click">
+                                <i class="fab fa-youtube"></i> TUTORIAL POP OS
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nobara -->
+                <div class="distro-card bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border transition duration-300 hover:border-neon">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="bg-gradient-to-br from-red-600 to-pink-500 p-3 rounded-lg">
+                                <i class="fas fa-gamepad text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">NOBARA LINUX</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6 flex-grow">
+                            Feita por expert em jogos – suporte a todos os controles! Baseada no Fedora, mas turbinada para gaming.
+                        </p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-red-900/50 text-xs px-2 py-1 rounded">Controles</span>
+                                <span class="bg-red-900/50 text-xs px-2 py-1 rounded">Proton</span>
+                                <span class="bg-red-900/50 text-xs px-2 py-1 rounded">Streaming</span>
+                            </div>
+                            <a href="https://youtube.com/linuxgamer/nobara" class="btn-rgb w-full py-2 rounded-lg font-bold flex items-center justify-center gap-2 btn-click">
+                                <i class="fab fa-youtube"></i> TUTORIAL NOBARA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bazzite -->
+                <div class="distro-card bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border transition duration-300 hover:border-neon">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="bg-gradient-to-br from-green-600 to-cyan-500 p-3 rounded-lg">
+                                <i class="fab fa-steam text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">BAZZITE</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6 flex-grow">
+                            Transforme seu PC num Steam Deck gigante! Interface otimizada para Big Picture e modo console.
+                        </p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-green-900/50 text-xs px-2 py-1 rounded">Steam Deck</span>
+                                <span class="bg-green-900/50 text-xs px-2 py-1 rounded">Big Picture</span>
+                                <span class="bg-green-900/50 text-xs px-2 py-1 rounded">Game Mode</span>
+                            </div>
+                            <a href="https://youtube.com/linuxgamer/bazzite" class="btn-rgb w-full py-2 rounded-lg font-bold flex items-center justify-center gap-2 btn-click">
+                                <i class="fab fa-youtube"></i> TUTORIAL BAZZITE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Zorin OS -->
+                <div class="distro-card bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border transition duration-300 hover:border-neon">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="bg-gradient-to-br from-yellow-600 to-orange-500 p-3 rounded-lg">
+                                <i class="fas fa-heart text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">ZORIN OS</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6 flex-grow">
+                            O mais simples para iniciantes – você vai se sentir em casa! Layout familiar do Windows com performance melhorada.
+                        </p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-yellow-900/50 text-xs px-2 py-1 rounded">Iniciantes</span>
+                                <span class="bg-yellow-900/50 text-xs px-2 py-1 rounded">Windows-like</span>
+                                <span class="bg-yellow-900/50 text-xs px-2 py-1 rounded">Estável</span>
+                            </div>
+                            <a href="https://youtube.com/linuxgamer/zorin" class="btn-rgb w-full py-2 rounded-lg font-bold flex items-center justify-center gap-2 btn-click">
+                                <i class="fab fa-youtube"></i> TUTORIAL ZORIN
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More Options -->
+                <div class="distro-card bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border transition duration-300 hover:border-neon">
+                    <div class="flex flex-col h-full items-center justify-center text-center">
+                        <div class="mb-4 p-4 bg-neon/20 rounded-full">
+                            <i class="fas fa-ellipsis-h text-3xl text-neon"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">MAIS OPÇÕES</h3>
+                        <p class="text-gray-300 mb-6">
+                            Temos recomendações específicas para seu hardware e preferências!
+                        </p>
+                        <a href="https://youtube.com/linuxgamer/playlist/distros" class="btn-secondary w-full py-2 rounded-lg font-bold flex items-center justify-center gap-2 btn-click">
+                            <i class="fab fa-youtube"></i> VER TODAS DISTROS
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-2xl mx-auto mt-12 text-center">
+                <div class="inline-flex items-center gap-2 bg-black/70 px-4 py-2 rounded-lg border border-neon/30">
+                    <i class="fas fa-shield-alt text-neon"></i>
+                    <span>Todas as distros são 100% gratuitas e livres de vírus</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section id="software" class="py-16 bg-gradient-to-b from-dark to-black/80">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-neon">SOFTWARE ESSENCIAL</span> PARA GAMERS
+                </h2>
+                <p class="text-lg text-gray-300">
+                    Todos esses programas já vêm instalados nas nossas distros recomendadas
+                </p>
+            </div>
+            
+            <div class="software-grid max-w-6xl mx-auto">
+                <!-- Steam -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-steam feature-icon"></i>
+                        <h3 class="text-xl font-bold">STEAM</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Plataforma de jogos mais popular do mundo com suporte nativo ao Proton para rodar jogos do Windows.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/steam" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- Proton -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-wine-bottle feature-icon"></i>
+                        <h3 class="text-xl font-bold">PROTON</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Camada de compatibilidade da Valve que permite jogar títulos do Windows no Linux sem configuração.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/proton" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- Lutris -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-trophy feature-icon"></i>
+                        <h3 class="text-xl font-bold">LUTRIS</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Gerenciador de jogos que simplifica a instalação de jogos da Epic, GOG, Origin e outras plataformas.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/lutris" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- Heroic Games Launcher -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-crown feature-icon"></i>
+                        <h3 class="text-xl font-bold">HEROIC</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Launcher alternativo para jogos da Epic Games Store com suporte a cloud saves e achievements.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/heroic" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- MangoHud -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-bar feature-icon"></i>
+                        <h3 class="text-xl font-bold">MANGOHUD</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Overlay de performance que mostra FPS, uso de CPU/GPU, temperaturas e mais durante o jogo.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/mangohud" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- GameMode -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-tachometer-alt feature-icon"></i>
+                        <h3 class="text-xl font-bold">GAMEMODE</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Otimiza automaticamente o sistema quando um jogo é iniciado, desativando serviços desnecessários.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/gamemode" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- Wine -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-wine-glass-alt feature-icon"></i>
+                        <h3 class="text-xl font-bold">WINE</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Camada de compatibilidade que permite executar aplicativos e jogos do Windows no Linux.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/wine" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+                
+                <!-- Bottles -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl p-6 tech-border hover:border-neon transition">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-wine-bottle feature-icon"></i>
+                        <h3 class="text-xl font-bold">BOTTLES</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Gerenciador de ambientes Wine que facilita a instalação de jogos e aplicativos do Windows.
+                    </p>
+                    <a href="https://youtube.com/linuxgamer/bottles" class="text-neon hover:underline inline-flex items-center gap-1">
+                        <i class="fab fa-youtube"></i> Ver tutorial
+                    </a>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto mt-12 text-center">
+                <a href="https://youtube.com/linuxgamer/playlist/software" class="btn-rgb px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click mx-auto max-w-md">
+                    <i class="fab fa-youtube"></i> VER TUTORIAIS DE SOFTWARE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorials Section -->
+    <section id="tutoriais" class="py-16 bg-gradient-to-b from-black/80 to-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-neon">TUTORIAIS</span> EM VÍDEO
+                </h2>
+                <p class="text-lg text-gray-300">
+                    Aprenda a instalar, configurar e otimizar seu Linux Gamer com nossos guias passo a passo
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Tutorial 1 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl overflow-hidden tech-border hover:border-neon transition group">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/a20iZg6k_gc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Instalação do Garuda Linux</h3>
+                        <p class="text-gray-300 mb-4">Guia completo para instalar a distro mais poderosa para gaming</p>
+                        <a href="https://youtube.com/linuxgamer/garuda" class="text-neon hover:underline inline-flex items-center gap-1">
+                            <i class="fab fa-youtube"></i> Assistir tutorial completo
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 2 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl overflow-hidden tech-border hover:border-neon transition group">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/a20iZg6k_gc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Configurando o Proton</h3>
+                        <p class="text-gray-300 mb-4">Aprenda a maximizar a compatibilidade com jogos do Windows</p>
+                        <a href="https://youtube.com/linuxgamer/proton" class="text-neon hover:underline inline-flex items-center gap-1">
+                            <i class="fab fa-youtube"></i> Assistir tutorial completo
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 3 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl overflow-hidden tech-border hover:border-neon transition group">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/a20iZg6k_gc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Otimizando FPS no Linux</h3>
+                        <p class="text-gray-300 mb-4">Técnicas avançadas para extrair o máximo do seu hardware</p>
+                        <a href="https://youtube.com/linuxgamer/fps" class="text-neon hover:underline inline-flex items-center gap-1">
+                            <i class="fab fa-youtube"></i> Assistir tutorial completo
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 4 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl overflow-hidden tech-border hover:border-neon transition group">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/a20iZg6k_gc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Instalando Epic Games</h3>
+                        <p class="text-gray-300 mb-4">Como jogar seus títulos da Epic Store no Linux</p>
+                        <a href="https://youtube.com/linuxgamer/epic" class="text-neon hover:underline inline-flex items-center gap-1">
+                            <i class="fab fa-youtube"></i> Assistir tutorial completo
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 5 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl overflow-hidden tech-border hover:border-neon transition group">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/a20iZg6k_gc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Configurando Controles</h3>
+                        <p class="text-gray-300 mb-4">Suporte completo a controles Xbox, PS4/5 e outros</p>
+                        <a href="https://youtube.com/linuxgamer/controles" class="text-neon hover:underline inline-flex items-center gap-1">
+                            <i class="fab fa-youtube"></i> Assistir tutorial completo
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 6 -->
+                <div class="bg-gradient-to-b from-dark to-black/50 rounded-xl overflow-hidden tech-border hover:border-neon transition group">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/a20iZg6k_gc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Dual Boot com Windows</h3>
+                        <p class="text-gray-300 mb-4">Como manter os dois sistemas no mesmo PC</p>
+                        <a href="https://youtube.com/linuxgamer/dualboot" class="text-neon hover:underline inline-flex items-center gap-1">
+                            <i class="fab fa-youtube"></i> Assistir tutorial completo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto mt-12 text-center">
+                <a href="https://youtube.com/linuxgamer" class="btn-rgb px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click mx-auto max-w-md">
+                    <i class="fab fa-youtube"></i> INSCREVA-SE NO CANAL
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-16 bg-gradient-to-b from-dark to-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1470&auto=format&fit=crop')] bg-cover bg-center opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    <span class="text-neon">PRONTO PARA MIGRAR</span> PARA O LINUX?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Escolha uma distro, baixe grátis e comece a jogar com mais FPS no mesmo hardware!
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                    <a href="#distros" class="btn-rgb px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click">
+                        <i class="fas fa-download"></i> BAIXAR DISTRO AGORA
+                    </a>
+                    <a href="https://youtube.com/linuxgamer" class="btn-secondary px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 btn-click">
+                        <i class="fab fa-youtube"></i> VER TUTORIAIS NO YOUTUBE
+                    </a>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="flex items-center gap-2 bg-black/50 px-4 py-2 rounded-lg border border-neon/20">
+                        <i class="fas fa-check-circle text-neon"></i>
+                        <span>100% gratuito</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-black/50 px-4 py-2 rounded-lg border border-neon/20">
+                        <i class="fas fa-check-circle text-neon"></i>
+                        <span>Suporte da comunidade</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-black/50 px-4 py-2 rounded-lg border border-neon/20">
+                        <i class="fas fa-check-circle text-neon"></i>
+                        <span>Mais FPS no mesmo hardware</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black/90 py-12 border-t border-neon/10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-brands fa-linux text-3xl text-neon"></i>
+                        <span class="text-xl font-bold bg-gradient-to-r from-neon to-electric bg-clip-text text-transparent">LINUX GAMER</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Transformando PCs antigos em máquinas de jogos desde 2018. Linux para todos!
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://youtube.com/linuxgamer" class="text-gray-400 hover:text-neon transition"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-neon transition"><i class="fab fa-discord text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-neon transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-neon transition"><i class="fab fa-twitter text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-neon">LINKS ÚTEIS</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#distros" class="text-gray-400 hover:text-white transition">Distros para Gaming</a></li>
+                        <li><a href="#software" class="text-gray-400 hover:text-white transition">Software Essencial</a></li>
+                        <li><a href="#tutoriais" class="text-gray-400 hover:text-white transition">Tutoriais em Vídeo</a></li>
+                        <li><a href="#vantagens" class="text-gray-400 hover:text-white transition">Vantagens do Linux</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-neon">RECURSOS</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://youtube.com/linuxgamer/playlist" class="text-gray-400 hover:text-white transition">Playlists do YouTube</a></li>
+                        <li><a href="https://youtube.com/linuxgamer/community" class="text-gray-400 hover:text-white transition">Comunidade</a></li>
+                        <li><a href="https://youtube.com/linuxgamer/live" class="text-gray-400 hover:text-white transition">Lives de Suporte</a></li>
+                        <li><a href="https://youtube.com/linuxgamer/about" class="text-gray-400 hover:text-white transition">Sobre Nós</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 Linux Gamer. Todos os direitos reservados. Linux é uma marca registrada de Linus Torvalds.</p>
+                <p class="mt-2">Este site não é afiliado à Valve, Microsoft ou qualquer outra empresa mencionada.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="#" class="bg-[#25D366] text-white p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-[#128C7E] transition btn-click">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Create particle background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 20s
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `-${Math.random() * 20}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Click sound effect
+        function playClickSound() {
+            const clickSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3');
+            clickSound.volume = 0.3;
+            clickSound.play().catch(e => console.log("Audio play failed:", e));
+        }
+        
+        // FAQ Toggle
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                playClickSound();
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                playClickSound();
+            });
+        });
+        
+        // Add click sound to all buttons with btn-click class
+        document.querySelectorAll('.btn-click').forEach(button => {
+            button.addEventListener('click', playClickSound);
+        });
+        
+        // Initialize on load
+        window.addEventListener('load', () => {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
